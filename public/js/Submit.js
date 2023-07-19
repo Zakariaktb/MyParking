@@ -10,7 +10,7 @@ function submitData() {
     formData.append('phone', phone);
     formData.append('car_plate', car_plate);
     formData.append('service', service);
-    fetch('/enter', {
+    fetch('/user', {
         method: 'POST',
         body: formData
     })

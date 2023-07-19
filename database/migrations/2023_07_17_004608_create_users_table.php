@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('name', 191)->collation('utf8mb4_unicode_ci')->nullable(false);
             $table->integer('phone')->default(0);
             $table->integer('car_plate')->default(0);
-            // $table->timestamps(false);
+            // $table->timestamps();
         });
     }
 

@@ -30,5 +30,5 @@ Route::get('/Home',function () {
     return view('Home');
 });
 
-Route::get('/enter', [UserController::class, 'store']);
+Route::resource('user', UserController::class);
 

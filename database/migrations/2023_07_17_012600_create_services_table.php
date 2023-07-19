@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price', 8, 2);
             // $table->timestamps(false);
+            // $table->foreign('type_id')->references('id')->on('services')->onDelete('cascade');
         });
     }
 

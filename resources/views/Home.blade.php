@@ -20,7 +20,7 @@
                 </tr>
                 <tr class="mt-2">
                     <td class="px-2">Car Plat</td>
-                    <td class="px-2"><input type="text" class="border" name="car_plat" id="carPlat"></td>
+                    <td class="px-2"><input type="text" class="border" name="car_plat" id="carPlat" ></td>
                 </tr>
                 <tr class="mt-2">
                     <td class="px-2">Phone</td>

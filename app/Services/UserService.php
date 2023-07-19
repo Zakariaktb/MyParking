@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\User;
 use App\Repositories\UserRepository;
 
 class UserService
@@ -10,32 +11,11 @@ class UserService
 
     public function __construct(UserRepository $userRepository)
     {
-        $this->userRepository = $userRepository;
+        $this->userRepository =$userRepository;
     }
-
-    public function createUser(array $userData)
+    public function create(array $userData)
     {
+        $this->userRepository->createUser($userData);
 
-        return $this->userRepository->create($userData);
     }
-
-    public function updateUser(array $userData, $userId)
-    {
-
-        return $this->userRepository->update($userData, $userId);
-    }
-
-    public function deleteUser($userId)
-    {
-
-        return $this->userRepository->delete($userId);
-    }
-
-    public function getUserById($userId)
-    {
-
-        return $this->userRepository->findById($userId);
-    }
-
-
 }
