@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('type_id');
-            $table->dateTime('entered_at');
-            $table->dateTime('exit_at');
-            $table->integer('duration');
-            $table->decimal('price', 8, 2);
-            $table->decimal('total', 8, 2);
-            $table->string('payment_status');
+            $table->dateTime('entered_at')->nullable();
+            $table->dateTime('exit_at')->nullable();
+            $table->integer('duration')->nullable();
+            $table->decimal('price', 8, 2)->nullable();
+            $table->decimal('total', 8, 2)->nullable();
+            $table->string('payment_status')->nullable();
             // $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -15,7 +15,8 @@ class UserService
     }
     public function create(array $userData)
     {
-        $this->userRepository->createUser($userData);
+        $result=$this->userRepository->createUser($userData);
+        return response()->json($result);
 
     }
 }

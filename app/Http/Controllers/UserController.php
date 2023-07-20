@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -34,34 +35,36 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        // Validate the request data to ensure it meets your requirements
-        $validatedData = $request->validate([
+        // Define the validation rules
+        $rules = [
             'name' => 'required|string|max:255',
             'phone' => 'required|string|max:20',
             'car_plate' => 'required|string|max:20',
             'service' => 'required'
-        ]);
-
-        // // Process the form data as per your requirements.
-        // // For example, you might want to save it to a database.
-
-        // // For now, let's just log the data and send a response back to the client.
-        $data = [
-            'name' => $validatedData['name'],
-            'phone' => $validatedData['phone'],
-            'car_plate' => $validatedData['car_plate'],
-            'service' => $validatedData['service'],
         ];
 
+        // Validate the request data
+        $validator = Validator::make($request->all(), $rules);
 
-        $user = $this->userService->create($data);
-        return response()->json($data, 200);
-        // // You can perform any other actions you need here, such as saving the data to a database.
+        // Check if validation fails
+        if ($validator->fails()) {
+            // Return a JSON response with the validation errors and a 422 status code (Unprocessable Entity)
+            return response()->json(['errors' => $validator->errors()], 422);
+        }
 
-        // // Send a response back to the client (you can customize this based on your needs)
-        // return response()->json(['message' => 'Data received successfully']);
+        // If the validation passes, proceed to process the form data
+        $data = [
+            'name' => $request->input('name'),
+            'phone' => $request->input('phone'),
+            'car_plate' => $request->input('car_plate'),
+            'service' => $request->input('service'),
+        ];
+        // dd($data);
+        $result=$this->userService->create($data);
+        return response()->json($result,200);
     }
 
     /**

@@ -9,6 +9,6 @@ class User extends Model
 {
     use HasFactory;
     protected $table="users";
-    protected $fillable=["name","phone","car_plate","service",];
+    protected $fillable=["id","name","phone","car_plate","service",];
     public $timestamps=false;
 }
