@@ -64,7 +64,10 @@ class UserController extends Controller
         ];
         // dd($data);
         $result=$this->userService->create($data);
+           // Store the $result data in the session
         return response()->json($result,200);
+        // Redirect to the 'home' route
+        // return redirect()->route('home');
     }
 
     /**

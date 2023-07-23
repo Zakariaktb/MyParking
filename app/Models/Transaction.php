@@ -11,4 +11,8 @@ class Transaction extends Model
     protected $table="transactions";
     protected $fillable=["id","user_id","type_id","entered_at","exit_at","duration","price","total","payment_status",];
     public $timestamps=false;
+    public function service()
+    {
+        return $this->belongsTo(Service::class, 'type_id');
+    }
 }

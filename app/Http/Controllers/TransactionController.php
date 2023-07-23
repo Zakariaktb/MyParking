@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -10,9 +11,25 @@ class TransactionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $userId = session('userId');
+        $user = User::find($userId);
+        $transaction = Transaction::find($userId);
+
+        // Include the related service name in the response
+        $serviceName = null;
+        if ($transaction && $transaction->service) {
+            $serviceName = $transaction->service->name; // Assuming 'name' is the column with the service name in the 'services' table
+        }
+
+        // Prepare the data to be sent in the response
+        $responseData = [
+            'user' => $user,
+            'transaction' => $transaction,
+        ];
+
+        return response()->json($responseData, 200);
     }
 
     /**
@@ -37,6 +54,9 @@ class TransactionController extends Controller
     public function show(Transaction $transaction)
     {
         //
+        $userId = session('userId');
+        $transaction=Transaction::find($userId);
+        return response()->json($transaction,200);
     }
 
     /**
