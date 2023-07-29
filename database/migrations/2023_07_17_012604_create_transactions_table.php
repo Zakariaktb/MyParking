@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('type_id');
             $table->dateTime('entered_at')->nullable();
             $table->dateTime('exit_at')->nullable();
-            $table->integer('duration')->nullable();
+            $table->time('duration')->nullable();
             $table->decimal('price', 8, 2)->nullable();
             $table->decimal('total', 8, 2)->nullable();
             $table->string('payment_status')->nullable();

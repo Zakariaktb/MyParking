@@ -14,38 +14,37 @@
         <form id="parkingForm" method="POST">
             @csrf <!-- Adding CSRF token -->
             <table>
-                <tr class="pt-5">
-                    <td class="px-2">Name</td>
-                    <td class="px-2"><div id="name"></div></td>
+                <tr class="pt-5 border-indigo-600 border">
+                    <td class="px-2 border-indigo-600 border ">Name</td>
+                    <td class="px-2 border-indigo-600 border">Car Plat</td>
+                    <td class="px-2 border-indigo-600 border">Phone</td>
+                    <td class="px-2 border-indigo-600 border">Service</td>
+                    <td class="px-2 border-indigo-600 border">enter</td>
+                    <td class="px-2 border-indigo-600 border">exit</td>
+                    <td class="px-2 border-indigo-600 border">duration</td>
+                    <td class="px-2 border-indigo-600 border">Total</td>
                 </tr>
-                <tr class="mt-2">
-                    <td class="px-2">Car Plat</td>
-                    <td class="px-2"><div id="carplate"></div></td>
-                </tr>
-                <tr class="mt-2">
-                    <td class="px-2">Phone</td>
-                    <td class="px-2"><div id="phone"></div></td>
-                </tr>
-                <tr class="mt-2">
-                    <td class="px-2">Service</td>
-                    <td class="px-2">
-                        <div id="service"></div>
-                    </td>
-                </tr>
-                <tr class="pt-2 mt-2">
-                    <td colspan="2" class="text-center">
-                        <button type="button" class="px-2 border rounded-md text-yellow-50 bg-blue-700 hover:shadow-lg" onclick="submitData()">Submit</button>
-                    </td>
+                <tr class="mt-2 border-indigo-600 border h-6">
+                    <td class="px-2 border-indigo-600 border"><div id="name"></div></td>
+                    <td class="px-2 border-indigo-600 border"><div id="carplate"></div></td>
+                    <td class="px-2 border-indigo-600 border"><div id="phone"></div></td>
+                    <td class="px-2 border-indigo-600 border"><div id="service"></div></td>
+                    <td class="px-2 border-indigo-600 border"><div id="enter"></div></td>
+                    <td class="px-2 border-indigo-600 border"><div id="exit"></div></td>
+                    <td class="px-2 border-indigo-600 border"><div id="duration"></div></td>
+                    <td class="px-2 border-indigo-600 border"><div id="total"></div></td>
                 </tr>
             </table>
+
+            <div class="flex flex-row justify-center mt-5">
+                <div class="mr-5"><label for="ticket">Ticket</label></div>
+                <div><input type="text" class="border" name="ticket" id="ticket"></div>
+            </div>
+            <div class="flex flex-row justify-center mt-5">
+                <div><input type="button" class="border bg-indigo-500 hover:bg-indigo-100" onclick="SubmitData()"  value="Checkout"></div>
+            </div>
+
         </form>
-        {{-- @section('content')
-        <div>
-            <h1>Payment Details</h1>
-            <p>Payment ID: {{ $payment->id }}</p>
-            <p>Amount: {{ $payment->amount }}</p>
-            <!-- Include other payment details here -->
-        </div>
-    @endsection --}}
+
 </body>
 </html>

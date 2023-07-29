@@ -4,31 +4,37 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\TransactionService;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
 {
+    protected $TransactionService;
+    public function __construct(TransactionService $TransactionService)
+    {
+        $this->TransactionService=$TransactionService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         $userId = session('userId');
-        $user = User::find($userId);
-        $transaction = Transaction::find($userId);
+        // $user = User::find($userId);
+        // $transaction = Transaction::find($userId);
 
-        // Include the related service name in the response
-        $serviceName = null;
-        if ($transaction && $transaction->service) {
-            $serviceName = $transaction->service->name; // Assuming 'name' is the column with the service name in the 'services' table
-        }
+        // // Include the related service name in the response
+        // $serviceName = null;
+        // if ($transaction && $transaction->service) {
+        //     $serviceName = $transaction->service->name; // Assuming 'name' is the column with the service name in the 'services' table
+        // }
 
-        // Prepare the data to be sent in the response
-        $responseData = [
-            'user' => $user,
-            'transaction' => $transaction,
-        ];
-
+        // // Prepare the data to be sent in the response
+        // $responseData = [
+        //     'user' => $user,
+        //     'transaction' => $transaction,
+        // ];
+        $responseData=$this->TransactionService->getTransactionById($userId);
         return response()->json($responseData, 200);
     }
 

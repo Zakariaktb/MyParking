@@ -13,13 +13,13 @@ class PaymentService
         $this->paymentRepository = $paymentRepository;
     }
 
-    public function createPayment(array $paymentData)
+    public function createPayment($token)
     {
         // Add any business logic here before creating the payment.
         // For example, you can validate data or perform additional operations.
 
         // Call the PaymentRepository to create the payment.
-        return $this->paymentRepository->create($paymentData);
+        return $this->paymentRepository->create($token);
     }
 
     public function updatePayment(array $paymentData, $paymentId)

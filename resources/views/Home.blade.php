@@ -35,6 +35,11 @@
                         </select>
                     </td>
                 </tr>
+                <tr class="pt-2 mt-2">
+                    <td colspan="2" class="text-center">
+                        <button type="button" class="px-2 border rounded-md text-yellow-50 bg-blue-700 hover:shadow-lg" onclick="submitData()">Submit</button>
+                    </td>
+                </tr>
             </table>
         </form>
     </div>

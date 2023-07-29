@@ -43,7 +43,8 @@ class TransactionService
     public function getTransactionById($transactionId)
     {
         // Call the TransactionRepository to find a transaction by its ID.
-        return $this->transactionRepository->findById($transactionId);
+        $result=$this->transactionRepository->findById($transactionId);
+        return response()->json($result,200) ;
     }
 
     // Add other methods as needed to handle different business logic related to transactions.

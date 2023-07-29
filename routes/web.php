@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\StripePaymentController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -54,3 +55,6 @@ Route::get('/exit', function () {
 
     return view('qr_code', ['qrCode' => $qrCode]);
 });
+Route::post('stripe',[StripePaymentController::class,'stripePost']);
+
+
