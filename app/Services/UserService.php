@@ -4,7 +4,7 @@ namespace App\Services;
 
 use App\Models\User;
 use App\Repositories\UserRepository;
-
+use Exception;
 class UserService
 {
     protected $userRepository;
@@ -13,10 +13,22 @@ class UserService
     {
         $this->userRepository =$userRepository;
     }
-    public function create(array $userData)
+    public function create(array $user_Data)
     {
-        $result=$this->userRepository->createUser($userData);
-        return response()->json($result);
+        try {
 
+            $data = [
+                'name' => $user_Data['name'],
+                'phone' => $user_Data['phone'],
+                'car_plate' => $user_Data['car_plate'],
+                'service' => $user_Data['service'],
+            ];
+            $result = $this->userRepository->createUser($data);
+            return response()->json($result, 200);
+        } catch (Exception $e) {
+
+            return response()->json(['error' =>$e->getMessage()], 500);
+        }
     }
+
 }

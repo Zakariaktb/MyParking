@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Services\UserService;
+use Exception;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -38,36 +39,26 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        // Define the validation rules
-        $rules = [
-            'name' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
-            'car_plate' => 'required|string|max:20',
-            'service' => 'required'
-        ];
+        try {
+            // Define the validation rules
+            $rules = [
+                'name' => 'required|string|max:255',
+                'phone' => 'required|string|max:20',
+                'car_plate' => 'required|string|max:20',
+                'service' => 'required'
+            ];
 
-        // Validate the request data
-        $validator = Validator::make($request->all(), $rules);
+            // Validate the request data
+            $validator = Validator::make($request->all(), $rules);
 
-        // Check if validation fails
-        if ($validator->fails()) {
-            // Return a JSON response with the validation errors and a 422 status code (Unprocessable Entity)
-            return response()->json(['errors' => $validator->errors()], 422);
+            $result = $this->userService->create($request->all());
+            // Store the $result data in the session
+            return response()->json($result, 200);
+
+        } catch (Exception $e) {
+            // Handle any exceptions that may occur during the process
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-
-        // If the validation passes, proceed to process the form data
-        $data = [
-            'name' => $request->input('name'),
-            'phone' => $request->input('phone'),
-            'car_plate' => $request->input('car_plate'),
-            'service' => $request->input('service'),
-        ];
-        // dd($data);
-        $result=$this->userService->create($data);
-           // Store the $result data in the session
-        return response()->json($result,200);
-        // Redirect to the 'home' route
-        // return redirect()->route('home');
     }
 
     /**

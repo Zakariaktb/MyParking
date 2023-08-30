@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>My Parking</title>
-
+    <script src="https://js.stripe.com/v3/"></script>
     @vite('resources/css/app.css')
 </head>
 <body>
@@ -13,7 +13,7 @@
     <div class="flex justify-center mt-10">
         <form id="parkingForm" method="POST">
             @csrf <!-- Adding CSRF token -->
-            <table>
+            <table class="border">
                 <tr class="pt-5 border-indigo-600 border">
                     <td class="px-2 border-indigo-600 border ">Name</td>
                     <td class="px-2 border-indigo-600 border">Car Plat</td>
@@ -35,13 +35,10 @@
                     <td class="px-2 border-indigo-600 border"><div id="total"></div></td>
                 </tr>
             </table>
-
-            <div class="flex flex-row justify-center mt-5">
-                <div class="mr-5"><label for="ticket">Ticket</label></div>
-                <div><input type="text" class="border" name="ticket" id="ticket"></div>
-            </div>
-            <div class="flex flex-row justify-center mt-5">
-                <div><input type="button" class="border bg-indigo-500 hover:bg-indigo-100" onclick="SubmitData()"  value="Checkout"></div>
+            <div class="flex flex-row justify-center mt-5 ">
+                <form action="/checkout" method="POST">
+                    <button type="submit" id="checkout-button" class="bg-green-500 border rounded-md border-green-300">Checkout</button>
+                </form>
             </div>
 
         </form>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->time('duration')->nullable();
             $table->decimal('price', 8, 2)->nullable();
             $table->decimal('total', 8, 2)->nullable();
+            $table->string('payment_session_id')->nullable();
             $table->string('payment_status')->nullable();
             // $table->timestamps();
 

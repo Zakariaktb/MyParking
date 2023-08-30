@@ -10,7 +10,7 @@
 </head>
 <body>
     <script src="{{ asset('js/submit.js') }}"></script>
-    <div class="flex justify-center mt-10">
+    <div class="flex justify-center mt-10 ">
         <form id="parkingForm" method="POST">
             @csrf <!-- Adding CSRF token -->
             <table>

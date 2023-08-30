@@ -10,7 +10,7 @@ class Transaction extends Model
 {
     use HasFactory;
     protected $table="transactions";
-    protected $fillable=["id","user_id","type_id","entered_at","exit_at","duration","price","total","payment_status",];
+    protected $fillable=["id","user_id","type_id","entered_at","exit_at","duration","price","total","payment_session_id","payment_status",];
     public $timestamps=false;
     public function service()
     {

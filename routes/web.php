@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StripePaymentController;
+use App\Http\Controllers\StripeWebhookController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Controllers\UserController;
 use App\Models\Transaction;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -55,6 +55,12 @@ Route::get('/exit', function () {
 
     return view('qr_code', ['qrCode' => $qrCode]);
 });
-Route::post('stripe',[StripePaymentController::class,'stripePost']);
-
+Route::get('/success.html', function () {
+    return view('success');
+});
+Route::get('/cancel.html', function () {
+    return view('cancel');
+});
+Route::post('/checkout', [StripePaymentController::class, 'createCheckoutSession']);
+Route::post('/stripe/webhook', [StripeWebhookController::class,'handleWebhook']);
 

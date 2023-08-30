@@ -55,11 +55,6 @@ class TransactionRepository
                 'transaction' => $transaction,
                 'service_name' => $serviceName,
             ];
-            $payment=new Payment();
-            $payment->transaction_id=$transaction->id;
-            $payment->amount=$total;
-            $payment->paid_at=Carbon::now()->format('Y-m-d H:i:s');
-            $payment->status='Completed';
             // Session::flush();
             return response()->json($responseData, 200);
         } else {

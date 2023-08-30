@@ -58,23 +58,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Transaction;
 use App\Services\PaymentService;
+use App\Services\StripePaymentService;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Charge;
 use Exception;
+use Stripe\Checkout\Session;
+
 
 class StripePaymentController extends Controller
 {
-    protected $paymentService;
-    public function __construct(PaymentService $paymentService)
+    protected $stripePaymentService;
+
+    public function __construct(StripePaymentService $stripePaymentService)
     {
-        $this->paymentService = $paymentService;
+        $this->stripePaymentService=$stripePaymentService;
     }
-    public function stripePost(Request $request)
+
+    public function createCheckoutSession()
     {
-        $token = $request->input('token');
-        $result = $this->paymentService->createPayment($token);
-        return response()->json($result,200);
+        $url_session= $this->stripePaymentService->create();
+        return redirect()->away($url_session);
     }
 
 }
+
+

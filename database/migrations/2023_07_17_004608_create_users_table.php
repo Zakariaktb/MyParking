@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
+            // $table->engine = 'InnoDB';
+            // $table->charset = 'utf8mb4';
+            // $table->collation = 'utf8mb4_unicode_ci';
             $table->id();
-            $table->engine = 'InnoDB';
-            $table->charset = 'utf8mb4';
-            $table->collation = 'utf8mb4_unicode_ci';
-            $table->string('name', 191)->collation('utf8mb4_unicode_ci')->nullable(false);
+            $table->string('name', 191)->collation('utf8mb4_unicode_ci')->nullable();
             $table->integer('phone')->default(0);
             $table->integer('car_plate')->default(0);
             // $table->timestamps();
