@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Payment;
 use App\Models\Service;
 use App\Models\User;
 use App\Models\Transaction;
@@ -30,6 +31,10 @@ class UserRepository
                 'type_id' => $service->id,
                 'entered_at' => Carbon::now(),
                 'price' => $service->price,
+            ]);
+
+            $payment= Payment::create([
+                'transaction_id' => $transaction->id,
             ]);
             return response()->json($transaction, 200);
         } catch (QueryException $e) {
